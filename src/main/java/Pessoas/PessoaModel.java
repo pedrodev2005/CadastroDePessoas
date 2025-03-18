@@ -1,6 +1,9 @@
-package dev.java.CadastroDePessoas;
+package Pessoas;
 
+import Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -9,10 +12,18 @@ public class PessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    //uma pessoa para uma missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissoesModel missoes;
 
     public PessoaModel() {
     }
